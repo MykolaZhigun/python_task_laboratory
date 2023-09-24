@@ -4,15 +4,28 @@ first_array = []
 second_array = []
 result_array = []
 
-for i in range(10):
-    first_array.append(randint(0, 9))
-    second_array.append(randint(0, 9))
+def fill_array_with_random_numbers(arr, size):
+    for i in range(size):
+        arr.append(randint(1, 9))
+
+first_arr_size = int(input("Уведіть розмір першого масива: "))
+second_arr_size = int(input("Уведіть розмір другого масива: "))
+
+fill_array_with_random_numbers(first_array, first_arr_size)
+fill_array_with_random_numbers(second_array, second_arr_size)
+
 
 len_massiv = len(first_array)
 massive_for_reserved = 0
 
+max_size = max(len(first_array), len(second_array))
 
-for i in reversed(range(len_massiv)):
+for i in range(max_size - 1, -1, -1):
+    while len(first_array) < len(second_array):
+        first_array.insert(0, 0)
+    while len(second_array) < len(first_array):
+        second_array.insert(0, 0)
+
     add_result = first_array[i] + second_array[i] + massive_for_reserved
     if i == 0:
         result_array.insert(0, add_result)
